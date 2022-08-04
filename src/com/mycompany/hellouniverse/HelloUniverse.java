@@ -6,6 +6,8 @@ public class HelloUniverse {
         int nombreDePlanetes=9;
         short annee=2003;
 
+        System.out.println(annee<2006?"a":"b");
+
         if (annee>=2006) {
             nombreDePlanetes--;
         }
