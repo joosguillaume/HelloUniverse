@@ -18,7 +18,7 @@ public class HelloUniverse {
                     System.out.printf("Le programme ne peut pas fournir de résultat pour %d",nombreDePlanetes);
             }
             nombreDePlanetes++;
-            System.out.println("");
+            System.out.println();
         }
 
 
