@@ -2,7 +2,8 @@ package com.mycompany.hellouniverse;
 
 public class HelloUniverse {
     public static void main(String... args){
-        for (int nombreDePlanetes=7;nombreDePlanetes<10;nombreDePlanetes++){
+        int nombreDePlanetes=7;
+        while (nombreDePlanetes<10){
             switch (nombreDePlanetes){
                 case 7:
                     System.out.printf("On sait qu'au 16ème siècle, seules %d planètes avaient été découvertes",nombreDePlanetes);
@@ -16,6 +17,7 @@ public class HelloUniverse {
                 default:
                     System.out.printf("Le programme ne peut pas fournir de résultat pour %d",nombreDePlanetes);
             }
+            nombreDePlanetes++;
             System.out.println("");
         }
 
