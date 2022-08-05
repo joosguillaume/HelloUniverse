@@ -2,25 +2,41 @@ package com.mycompany.hellouniverse;
 
 public class HelloUniverse {
     public static void main(String... args){
-        int nombreDePlanetes=7;
-        while (nombreDePlanetes<10){
-            switch (nombreDePlanetes){
-                case 7:
-                    System.out.printf("On sait qu'au 16ème siècle, seules %d planètes avaient été découvertes",nombreDePlanetes);
-                    break;
-                case 8:
-                    System.out.printf("On sait que le nombre de planètes est passé de 7 à %d au 17ème siècle, mais il a également été réduit de 9 à %d en 2006",nombreDePlanetes,nombreDePlanetes);
-                    break;
-                case 9:
-                    System.out.printf("On sait que le nombre de planètes est passé de 8 à %d au 18ème siècle et ce jusqu'en 2006, où ce nombre a été réduit à 8",nombreDePlanetes);
-                    break;
-                default:
-                    System.out.printf("Le programme ne peut pas fournir de résultat pour %d",nombreDePlanetes);
-            }
-            nombreDePlanetes++;
-            System.out.println();
+
+        Planet mercure = new Planet();
+        mercure.name = "Mercure";
+        mercure.diameter = 4880;
+        mercure.material = "Tellurique";
+        Planet venus = new Planet();
+        venus.name = "Venus";
+        venus.diameter = 12100;
+        venus.material = "Tellurique";
+        Planet terre = new Planet();
+        terre.name = "Terre";
+        terre.diameter = 12756;
+        terre.material = "Tellurique";
+        Planet mars = new Planet();
+        mars.name = "Mars";
+        mars.diameter = 6792;
+        mars.material = "Tellurique";
+        Planet jupiter = new Planet();
+        jupiter.name = "Jupiter";
+        jupiter.diameter = 142984;
+        jupiter.material = "Gazeuse";
+        Planet saturne = new Planet();
+        saturne.name = "Saturne";
+        saturne.diameter = 120536;
+        saturne.material = "Gazeuse";
+        Planet uranus = new Planet();
+        uranus.name = "Uranus";
+        uranus.diameter = 51118;
+        uranus.material = "Gazeuse";
+        Planet neptune = new Planet();
+        neptune.name = "Neptune";
+        neptune.diameter = 49532;
+        neptune.material = "Gazeuse";
+
+        System.out.println(jupiter.name+" est une planète "+jupiter.material+" avec un diamètre de "+jupiter.diameter+ " kilomètres.");
+
         }
-
-
     }
-}
