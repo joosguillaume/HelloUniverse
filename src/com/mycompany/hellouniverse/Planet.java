@@ -4,6 +4,7 @@ public class Planet {
     String name;
     String material;
     long diameter;
+    int totalVisitors;
 
     int revolution(int angle){
         System.out.println("Je suis la planète "+ name +" et je tourne autour de mon étoile.");
@@ -12,6 +13,25 @@ public class Planet {
     int rotation(int angle){
         System.out.println("Je suis la planète "+ name +" et je tourne sur moi-même.");
         return angle/365;
+    }
+
+    void welcomeVessels(int newHumans){
+        totalVisitors +=newHumans;
+    }
+
+    void welcomeVessels(String vesselType){
+        switch (vesselType){
+            case "HUNTEUR":
+                totalVisitors +=3;
+                break;
+            case "FRIGATE":
+                totalVisitors +=12;
+                break;
+            case "CRUISER":
+                totalVisitors +=50;
+                break;
+            default:
+        }
     }
 }
 

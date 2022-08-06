@@ -51,5 +51,8 @@ public class HelloUniverse {
         nombreDeRotation=venus.rotation(1250);
         System.out.println(venus.name+" a effectué "+nombreDeRotation+" tours complets sur elle-même.");
 
+        mars.welcomeVessels(8);
+        mars.welcomeVessels("FRIGATE");
+        System.out.println("Le nombre d'humains ayant déjà séjourné sur "+mars.name+" est actuellement de "+mars.totalVisitors +".");
     }
     }
