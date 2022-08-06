@@ -5,6 +5,7 @@ public class Planet {
     String material;
     long diameter;
     int totalVisitors;
+    Atmosphere atmosphere;
 
     int revolution(int angle){
         System.out.println("Je suis la planète "+ name +" et je tourne autour de mon étoile.");

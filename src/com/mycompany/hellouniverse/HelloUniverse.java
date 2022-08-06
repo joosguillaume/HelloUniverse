@@ -54,5 +54,17 @@ public class HelloUniverse {
         mars.welcomeVessels(8);
         mars.welcomeVessels("FRIGATE");
         System.out.println("Le nombre d'humains ayant déjà séjourné sur "+mars.name+" est actuellement de "+mars.totalVisitors +".");
-    }
+
+        Atmosphere uranusAtmosphere=new Atmosphere();
+        uranusAtmosphere.heliumRate=15;
+        uranusAtmosphere.hydrogenRate=83;
+        uranusAtmosphere.methaneRate=2.5f;
+        uranus.atmosphere=uranusAtmosphere;
+
+        System.out.println("L'atmosphère de la planète "+uranus.name+" est composée : ");
+        System.out.println("A "+ uranus.atmosphere.hydrogenRate+ " % d'hydrogène");
+        System.out.println("A "+ uranus.atmosphere.heliumRate+ " % d'hélium");
+        System.out.println("A "+ uranus.atmosphere.methaneRate+ " % de méthane");
+
+        }
     }
