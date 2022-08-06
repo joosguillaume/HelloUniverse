@@ -41,8 +41,15 @@ public class HelloUniverse {
         Planet planeteX=new Planet();
         System.out.println(planeteX.name+" est une planète "+planeteX.material+" avec un diamètre de "+planeteX.diameter+ " kilomètres.");
 
-        neptune.revolution();
-        mars.rotation();
+        int nombreDeRevolution=0;
+        int nombreDeRotation=0;
+        nombreDeRevolution=neptune.revolution(-3542);
+        System.out.println(neptune.name+" a effectué "+nombreDeRevolution+" tours complets autour de son étoile.");
+        nombreDeRotation=mars.rotation(-684);
+        System.out.println(mars.name+" a effectué "+nombreDeRotation+" tours complets sur elle-même.");
+
+        nombreDeRotation=venus.rotation(1250);
+        System.out.println(venus.name+" a effectué "+nombreDeRotation+" tours complets sur elle-même.");
 
     }
     }
