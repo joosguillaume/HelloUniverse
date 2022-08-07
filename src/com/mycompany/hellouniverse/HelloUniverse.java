@@ -2,7 +2,7 @@ package com.mycompany.hellouniverse;
 
 public class HelloUniverse {
     public static void main(String... args){
-
+        System.out.println("Nombre de planètes découvertes : "+Planet.numberOfDiscoveredPlanets);
         Planet mercure = new Planet();
         mercure.name = "Mercure";
         mercure.diameter = 4880;
@@ -89,5 +89,6 @@ public class HelloUniverse {
 
         System.out.println(Planet.expansion(10.5));
         System.out.println(Planet.expansion(14.2));
+        System.out.println("Nombre de planètes découvertes : "+Planet.numberOfDiscoveredPlanets);
     }
 }
