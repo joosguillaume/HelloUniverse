@@ -24,5 +24,10 @@ public class Planet {
         this.totalVisitors+=vesselArriving.numberOfPassengers;
         return vesselOut;
     }
+
+    static String expansion(double distance){
+        //System.out.println(distance<14?"Oh la la mais c'est super rapide":"Je rêve ou c'est plus rapide que la lumière?");
+        return distance<14?"Oh la la mais c'est super rapide":"Je rêve ou c'est plus rapide que la lumière?";
+    }
 }
 
