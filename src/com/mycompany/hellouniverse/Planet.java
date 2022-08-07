@@ -6,6 +6,7 @@ public class Planet {
     long diameter;
     int totalVisitors;
     Atmosphere atmosphere;
+    Vessel vesselIn;
 
     int revolution(int angle){
         System.out.println("Je suis la planète "+ name +" et je tourne autour de mon étoile.");
@@ -16,23 +17,11 @@ public class Planet {
         return angle/365;
     }
 
-    void welcomeVessels(int newHumans){
-        totalVisitors +=newHumans;
-    }
-
-    void welcomeVessels(String vesselType){
-        switch (vesselType){
-            case "HUNTEUR":
-                totalVisitors +=3;
-                break;
-            case "FRIGATE":
-                totalVisitors +=12;
-                break;
-            case "CRUISER":
-                totalVisitors +=50;
-                break;
-            default:
-        }
+    Vessel welcomeVessels(Vessel vesselArriving){
+        Vessel vesselOut=this.vesselIn;
+        this.vesselIn=vesselArriving;
+        this.totalVisitors+=vesselArriving.numberOfPassengers;
+        return vesselOut;
     }
 }
 

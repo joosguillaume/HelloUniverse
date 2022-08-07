@@ -51,8 +51,26 @@ public class HelloUniverse {
         nombreDeRotation=venus.rotation(1250);
         System.out.println(venus.name+" a effectué "+nombreDeRotation+" tours complets sur elle-même.");
 
-        mars.welcomeVessels(8);
-        mars.welcomeVessels("FRIGATE");
+        Vessel vesselArriving=new Vessel();
+        vesselArriving.type="FRIGATE";
+        vesselArriving.numberOfPassengers=9;
+
+        Vessel vesselOut=mars.welcomeVessels(vesselArriving);
+        if(vesselOut!=null){
+            System.out.println("Un vaisseau de type "+vesselOut.type+" doit s'en aller.");
+        }else{
+            System.out.println("Auncun vaisseau ne s'en va.");
+        }
+        vesselArriving.type="CRUISER";
+        vesselArriving.numberOfPassengers=42;
+
+        vesselOut=mars.welcomeVessels(vesselArriving);
+        if(vesselOut!=null){
+            System.out.println("Un vaisseau de type "+vesselOut.type+" doit s'en aller.");
+        }else{
+            System.out.println("Auncun vaisseau ne s'en va.");
+        }
+
         System.out.println("Le nombre d'humains ayant déjà séjourné sur "+mars.name+" est actuellement de "+mars.totalVisitors +".");
 
         Atmosphere uranusAtmosphere=new Atmosphere();
