@@ -84,5 +84,7 @@ public class HelloUniverse {
         System.out.println("A "+ uranus.atmosphere.heliumRate+ " % d'hélium");
         System.out.println("A "+ uranus.atmosphere.methaneRate+ " % de méthane");
 
+        System.out.println("La forme d'une planète est : "+Planet.shape);
+        System.out.println("La forme de Mars est : "+mars.shape);
         }
     }

@@ -7,6 +7,7 @@ public class Planet {
     int totalVisitors;
     Atmosphere atmosphere;
     Vessel vesselIn;
+    static String shape="spherique";
 
     int revolution(int angle){
         System.out.println("Je suis la planète "+ name +" et je tourne autour de mon étoile.");
