@@ -79,5 +79,15 @@ public class HelloUniverse {
         System.out.println(Planet.expansion(10.5));
         System.out.println(Planet.expansion(14.2));
         System.out.println("Nombre de planètes découvertes : "+Planet.numberOfDiscoveredPlanets);
+
+        WarVessel hunterVessel=new WarVessel("HUNTER",156,2);
+        CivilianVessel worldVessel=new CivilianVessel("VAISSEAU-MONDE",4784,30);
+        hunterVessel.activateShield();
+        worldVessel.activateShield();
+        hunterVessel.attack(worldVessel,"lasers photoniques",3);
+        worldVessel.deactivateShield();
+        System.out.println("Durée de protection résiduelle du bouclier du vaisseau-Monde : "+worldVessel.shieldDurationCapability);
+        System.out.println("Valeur du blindage du bouclier du vaisseau-Monde : "+worldVessel.armourResistanceCapability);
+
     }
 }
