@@ -10,6 +10,9 @@ public class TelluricPlanet extends Planet implements Habitable{
     }
     @Override
     public Vessel welcomeVessels(Vessel vesselArriving){
+        if(vesselArriving instanceof WarVessel){
+            ((WarVessel) vesselArriving).deactivateWeapons();
+        }
         Vessel vesselOut=this.vesselIn;
         this.vesselIn=vesselArriving;
         this.totalVisitors+=vesselArriving.numberOfPassengers;

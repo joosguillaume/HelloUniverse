@@ -35,36 +35,24 @@ public class HelloUniverse {
         nombreDeRotation=venus.rotation(1250);
         System.out.println(venus.name+" a effectué "+nombreDeRotation+" tours complets sur elle-même.");
 
-        Vessel frigate=new Vessel();
-        frigate.type="FRIGATE";
-        frigate.numberOfPassengers=9;
-
-        Vessel vesselOut=mars.welcomeVessels(frigate);
-        if(vesselOut!=null){
-            System.out.println("Un vaisseau de type "+vesselOut.type+" doit s'en aller.");
-        }else{
-            System.out.println("Auncun vaisseau ne s'en va.");
-        }
-        Vessel cruiser=new Vessel();
-        cruiser.type="CRUISER";
-        cruiser.numberOfPassengers=42;
-
-        vesselOut=mars.welcomeVessels(cruiser);
-        if(vesselOut!=null){
-            System.out.println("Un vaisseau de type "+vesselOut.type+" doit s'en aller.");
-        }else{
-            System.out.println("Auncun vaisseau ne s'en va.");
-        }
-
-        Vessel hunter=new Vessel();
+        WarVessel hunter=new WarVessel();
         hunter.type="HUNTER";
-        vesselOut=mars.welcomeVessels(hunter);
+        hunter.numberOfPassengers=9;
+        Vessel vesselOut=mars.welcomeVessels(hunter);
         if(vesselOut!=null){
             System.out.println("Un vaisseau de type "+vesselOut.type+" doit s'en aller.");
         }else{
             System.out.println("Auncun vaisseau ne s'en va.");
         }
-
+        CivilianVessel civilianVessel=new CivilianVessel();
+        civilianVessel.type="WORLD-VESSEL";
+        hunter.attack(civilianVessel,"lasers photoniques",3);
+        vesselOut=mars.welcomeVessels(civilianVessel);
+        if(vesselOut!=null){
+            System.out.println("Un vaisseau de type "+vesselOut.type+" doit s'en aller.");
+        }else{
+            System.out.println("Auncun vaisseau ne s'en va.");
+        }
         System.out.println("Le nombre d'humains ayant déjà séjourné sur "+mars.name+" est actuellement de "+mars.totalVisitors +".");
 
         Atmosphere uranusAtmosphere=new Atmosphere();
