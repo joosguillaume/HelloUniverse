@@ -1,10 +1,11 @@
 package com.mycompany.hellouniverse;
 
 public class WarVessel extends Vessel{
+    WarVessel(){
+        super();
+    }
     WarVessel(String type,int armourResistanceCapability,int shieldDurationCapability){
-        this.type=type;
-        this.armourResistanceCapability=armourResistanceCapability;
-        this.shieldDurationCapability=shieldDurationCapability;
+        super(type,armourResistanceCapability,shieldDurationCapability);
     }
     void attack (Vessel target,String weapon,int duration){
         System.out.println("Un vaisseau de type "+this.type+" attaque un vaisseau de type "+target.type+" en utilisant l'arme "+weapon+" pendant "+duration+" minutes.");

@@ -4,12 +4,8 @@ public class Planet {
     static String shape="spherique";
     static int numberOfDiscoveredPlanets;
     String name;
-    String material;
     long diameter;
-    int totalVisitors;
     Atmosphere atmosphere;
-    Vessel vesselIn;
-
 
     Planet(String name){
         this.name=name;
@@ -26,13 +22,6 @@ public class Planet {
     int rotation(int angle){
         System.out.println("Je suis la planète "+ name +" et je tourne sur moi-même.");
         return angle/365;
-    }
-
-    Vessel welcomeVessels(Vessel vesselArriving){
-        Vessel vesselOut=this.vesselIn;
-        this.vesselIn=vesselArriving;
-        this.totalVisitors+=vesselArriving.numberOfPassengers;
-        return vesselOut;
     }
 }
 

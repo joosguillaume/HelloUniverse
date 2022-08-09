@@ -3,31 +3,26 @@ package com.mycompany.hellouniverse;
 public class HelloUniverse {
     public static void main(String... args){
         System.out.println("Nombre de planètes découvertes : "+Planet.numberOfDiscoveredPlanets);
-        Planet mercure = new Planet("Mercure");
+        TelluricPlanet mercure = new TelluricPlanet("Mercure");
         mercure.diameter = 4880;
-        mercure.material = "Tellurique";
-        Planet venus = new Planet("Venus");
+        TelluricPlanet venus = new TelluricPlanet("Venus");
         venus.diameter = 12100;
-        venus.material = "Tellurique";
-        Planet terre = new Planet("Terre");
+        TelluricPlanet terre = new TelluricPlanet("Terre");
         terre.diameter = 12756;
-        terre.material = "Tellurique";
-        Planet mars = new Planet("Mars");
-        mars.diameter = 6792;
-        mars.material = "Tellurique";
-        Planet jupiter = new Planet("Jupiter");
-        jupiter.diameter = 142984;
-        jupiter.material = "Gazeuse";
-        Planet saturne = new Planet("Saturne");
-        saturne.diameter = 120536;
-        saturne.material = "Gazeuse";
-        Planet uranus = new Planet("Uranus");
-        uranus.diameter = 51118;
-        uranus.material = "Gazeuse";
-        Planet neptune = new Planet("Neptune");
-        neptune.diameter = 49532;
-        neptune.material = "Gazeuse";
 
+        GaseousPlanet saturne = new GaseousPlanet("Saturne");
+        saturne.diameter = 120536;
+        GaseousPlanet uranus = new GaseousPlanet("Uranus");
+        uranus.diameter = 51118;
+        GaseousPlanet neptune = new GaseousPlanet("Neptune");
+        neptune.diameter = 49532;
+
+        TelluricPlanet mars = new TelluricPlanet("Mars");
+        mars.diameter = 6792;
+        System.out.println(mars.name+" est une planète "+mars.material+" avec un diamètre de "+mars.diameter+ " kilomètre.");
+
+        GaseousPlanet jupiter = new GaseousPlanet("Jupiter");
+        jupiter.diameter = 142984;
         System.out.println(jupiter.name+" est une planète "+jupiter.material+" avec un diamètre de "+jupiter.diameter+ " kilomètre.");
 
         int nombreDeRevolution=0;
@@ -40,20 +35,30 @@ public class HelloUniverse {
         nombreDeRotation=venus.rotation(1250);
         System.out.println(venus.name+" a effectué "+nombreDeRotation+" tours complets sur elle-même.");
 
-        Vessel vesselArriving=new Vessel();
-        vesselArriving.type="FRIGATE";
-        vesselArriving.numberOfPassengers=9;
+        Vessel frigate=new Vessel();
+        frigate.type="FRIGATE";
+        frigate.numberOfPassengers=9;
 
-        Vessel vesselOut=mars.welcomeVessels(vesselArriving);
+        Vessel vesselOut=mars.welcomeVessels(frigate);
         if(vesselOut!=null){
             System.out.println("Un vaisseau de type "+vesselOut.type+" doit s'en aller.");
         }else{
             System.out.println("Auncun vaisseau ne s'en va.");
         }
-        vesselArriving.type="CRUISER";
-        vesselArriving.numberOfPassengers=42;
+        Vessel cruiser=new Vessel();
+        cruiser.type="CRUISER";
+        cruiser.numberOfPassengers=42;
 
-        vesselOut=mars.welcomeVessels(vesselArriving);
+        vesselOut=mars.welcomeVessels(cruiser);
+        if(vesselOut!=null){
+            System.out.println("Un vaisseau de type "+vesselOut.type+" doit s'en aller.");
+        }else{
+            System.out.println("Auncun vaisseau ne s'en va.");
+        }
+
+        Vessel hunter=new Vessel();
+        hunter.type="HUNTER";
+        vesselOut=mars.welcomeVessels(hunter);
         if(vesselOut!=null){
             System.out.println("Un vaisseau de type "+vesselOut.type+" doit s'en aller.");
         }else{
