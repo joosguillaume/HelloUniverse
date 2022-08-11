@@ -1,11 +1,11 @@
 package com.mycompany.hellouniverse;
 
 public class Atmosphere {
-    float hydrogenRate;
-    float methaneRate;
-    float azoteRate;
-    float heliumRate;
-    float argonRate;
-    float carbonDioxydeRate;
-    float sodiumRate;
+    Float hydrogenRate;
+    Float methaneRate;
+    Float azoteRate;
+    Float heliumRate;
+    Float argonRate;
+    Float carbonDioxydeRate;
+    Float sodiumRate;
 }

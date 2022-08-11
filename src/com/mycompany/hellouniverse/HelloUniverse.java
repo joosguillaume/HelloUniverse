@@ -36,8 +36,6 @@ public class HelloUniverse {
         System.out.println(venus.name+" a effectué "+nombreDeRotation+" tours complets sur elle-même.");
 
 
-        //CHASSEUR, FREGATE, CROISEUR, CARGO et VAISSEAU-MONDE
-
         WarVessel hunter=new WarVessel("HUNTER");
         WarVessel frigate=new WarVessel("FRIGATE");
         WarVessel cruiser=new WarVessel("CRUISER");
@@ -103,7 +101,6 @@ public class HelloUniverse {
         System.out.println("Tonnage rejeté lors du chargement  du vaisseau de type "+vesselType+" : "+refusedQuantity+" tonnes.");
 
 
-        System.exit(0);
         Vessel civilVessel=new CivilianVessel();
         civilVessel.type="WORLD-VESSEL";
         cruiser.activateShield();
@@ -154,16 +151,18 @@ public class HelloUniverse {
         System.out.println("Le nombre d'humains ayant déjà séjourné sur "+mars.name+" est actuellement de "+mars.totalVisitors +".");
 
         Atmosphere uranusAtmosphere=new Atmosphere();
-        uranusAtmosphere.heliumRate=15;
-        uranusAtmosphere.hydrogenRate=83;
-        uranusAtmosphere.methaneRate=2.5f;
+        uranusAtmosphere.heliumRate=15f;
+        uranusAtmosphere.hydrogenRate=new Float(83);
+        uranusAtmosphere.methaneRate=new Float(2.5);
+        uranusAtmosphere.azoteRate=new Float(0);
         uranus.atmosphere=uranusAtmosphere;
 
         System.out.println("L'atmosphère de la planète "+uranus.name+" est composée : ");
         System.out.println("A "+ uranus.atmosphere.hydrogenRate+ " % d'hydrogène");
         System.out.println("A "+ uranus.atmosphere.heliumRate+ " % d'hélium");
         System.out.println("A "+ uranus.atmosphere.methaneRate+ " % de méthane");
-
+        System.out.println(uranus.atmosphere.azoteRate!=null?"A "+ uranus.atmosphere.azoteRate+ " % d'azote":"Pourcentage d'azote non défini");
+        System.out.println(uranus.atmosphere.argonRate!=null?"A "+ uranus.atmosphere.argonRate+ " % d'argon":"Pourcentage d'argon non défini");
         System.out.println("La forme d'une planète est : "+Planet.shape);
         System.out.println("La forme de Mars est : "+mars.shape);
 
