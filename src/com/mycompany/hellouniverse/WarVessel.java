@@ -5,6 +5,9 @@ public class WarVessel extends Vessel{
     WarVessel(){
         super();
     }
+    WarVessel(String type){
+        super(type);
+    }
     WarVessel(String type,int armourResistanceCapability,int shieldDurationCapability){
         super(type,armourResistanceCapability,shieldDurationCapability);
     }
@@ -21,5 +24,48 @@ public class WarVessel extends Vessel{
     void deactivateWeapons(){
         deactivatedWeapons=true;
         System.out.println("Désactivation des armes d'un vaisseau de type "+this.type);
+    }
+    void activateShield(){
+        super.activateShield();
+        deactivateWeapons();
+    }
+
+    @Override
+    int carryCargo(int tonnage) {
+        int rejectedTonnage=0;
+        int maxAcceptedTonnage=this.numberOfPassengers*2;
+        int tonnageToSet=0;
+        if(tonnage>0){
+            switch (this.type){
+                case "HUNTER":
+                    System.out.println("Un vaisseau de type "+this.type+" n'emporte pas de chargement.");
+                    rejectedTonnage=tonnage;
+                    break;
+                default:
+                    if(this.numberOfPassengers<12){
+                        System.out.println("Il n'y pas assez de passagers pour emporter un chargement");
+                        rejectedTonnage=tonnage;
+                    }
+                    else{
+                        if(tonnage<=maxAcceptedTonnage){
+                            tonnageToSet=tonnage;
+                            rejectedTonnage=0;
+                        }else{
+                            tonnageToSet=maxAcceptedTonnage;
+                            rejectedTonnage=tonnage-maxAcceptedTonnage;
+                        }
+                    }
+                    break;
+            }
+        }
+
+        if(tonnageToSet<this.maxTonnage-this.currentTonnage){
+            this.currentTonnage+=tonnageToSet;
+        }else{
+            //tonnageToSet=this.maxTonnage-this.currentTonnage;
+            rejectedTonnage+=(tonnageToSet-this.maxTonnage+this.currentTonnage);
+            this.currentTonnage=this.maxTonnage;
+        }
+        return rejectedTonnage;
     }
 }

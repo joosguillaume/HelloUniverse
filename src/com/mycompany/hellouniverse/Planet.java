@@ -1,6 +1,6 @@
 package com.mycompany.hellouniverse;
 
-public class Planet {
+public abstract class Planet {
     static String shape="spherique";
     static int numberOfDiscoveredPlanets;
     String name;

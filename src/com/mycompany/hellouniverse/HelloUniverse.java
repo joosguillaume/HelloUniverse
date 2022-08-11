@@ -9,7 +9,10 @@ public class HelloUniverse {
         venus.diameter = 12100;
         TelluricPlanet terre = new TelluricPlanet("Terre");
         terre.diameter = 12756;
-
+        TelluricPlanet mars = new TelluricPlanet("Mars");
+        mars.diameter = 6792;
+        GaseousPlanet jupiter = new GaseousPlanet("Jupiter");
+        jupiter.diameter = 142984;
         GaseousPlanet saturne = new GaseousPlanet("Saturne");
         saturne.diameter = 120536;
         GaseousPlanet uranus = new GaseousPlanet("Uranus");
@@ -17,13 +20,7 @@ public class HelloUniverse {
         GaseousPlanet neptune = new GaseousPlanet("Neptune");
         neptune.diameter = 49532;
 
-        TelluricPlanet mars = new TelluricPlanet("Mars");
-        mars.diameter = 6792;
         System.out.println(mars.name+" est une planète "+mars.material+" avec un diamètre de "+mars.diameter+ " kilomètre.");
-
-        GaseousPlanet jupiter = new GaseousPlanet("Jupiter");
-        jupiter.diameter = 142984;
-        System.out.println(jupiter.name+" est une planète "+jupiter.material+" avec un diamètre de "+jupiter.diameter+ " kilomètre.");
 
         int nombreDeRevolution=0;
         int nombreDeRotation=0;
@@ -35,9 +32,41 @@ public class HelloUniverse {
         nombreDeRotation=venus.rotation(1250);
         System.out.println(venus.name+" a effectué "+nombreDeRotation+" tours complets sur elle-même.");
 
-        WarVessel hunter=new WarVessel();
-        hunter.type="HUNTER";
+        Vessel cruiser=new WarVessel("CRUISER");
+        Vessel civilVessel=new CivilianVessel();
+        civilVessel.type="WORLD-VESSEL";
+        cruiser.activateShield();
+        ((WarVessel) cruiser).attack(civilVessel,"lasers photoniques",3);
+
+        int refusedQuantity;
+        WarVessel hunter=new WarVessel("HUNTER");
         hunter.numberOfPassengers=9;
+        refusedQuantity=hunter.carryCargo(20);
+        System.out.println("Quantité refusée : "+refusedQuantity);
+
+        WarVessel frigate=new WarVessel("FRIGATE");
+        frigate.numberOfPassengers=100;
+        refusedQuantity=frigate.carryCargo(45);
+        System.out.println("currentTonnage : " +frigate.currentTonnage);
+        System.out.println("Quantité refusée : "+refusedQuantity);
+        refusedQuantity=frigate.carryCargo(12);
+        System.out.println("currentTonnage : " +frigate.currentTonnage);
+        System.out.println("Quantité refusée : "+refusedQuantity);
+
+        WarVessel frigate2=new WarVessel("FRIGATE");
+        frigate2.numberOfPassengers=14;
+        refusedQuantity=frigate2.carryCargo(30);
+        System.out.println("currentTonnage : " +frigate2.currentTonnage);
+        System.out.println("Quantité refusée : "+refusedQuantity);
+
+        CivilianVessel cv=new CivilianVessel("WORLD-VESSEL");
+        refusedQuantity=cv.carryCargo(1560);
+        System.out.println("currentTonnage : " +cv.currentTonnage);
+        System.out.println("Quantité refusée : "+refusedQuantity);
+        refusedQuantity=cv.carryCargo(600);
+        System.out.println("currentTonnage : " +cv.currentTonnage);
+        System.out.println("Quantité refusée : "+refusedQuantity);
+
         Vessel vesselOut=mars.welcomeVessels(hunter);
         if(vesselOut!=null){
             System.out.println("Un vaisseau de type "+vesselOut.type+" doit s'en aller.");
@@ -81,6 +110,7 @@ public class HelloUniverse {
         worldVessel.deactivateShield();
         System.out.println("Durée de protection résiduelle du bouclier du vaisseau-Monde : "+worldVessel.shieldDurationCapability);
         System.out.println("Valeur du blindage du bouclier du vaisseau-Monde : "+worldVessel.armourResistanceCapability);
+
 
     }
 }
