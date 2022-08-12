@@ -5,17 +5,17 @@ public class WarVessel extends Vessel{
     WarVessel(){
         super();
     }
-    WarVessel(String type){
+    WarVessel(TypeVaisseau type){
         super(type);
     }
-    WarVessel(String type,int armourResistanceCapability,int shieldDurationCapability){
+    WarVessel(TypeVaisseau type,int armourResistanceCapability,int shieldDurationCapability){
         super(type,armourResistanceCapability,shieldDurationCapability);
     }
     void attack (Vessel target,String weapon,int duration){
         if (deactivatedWeapons){
             System.out.println("Attaque impossible, l'armement est désactivé");
         } else {
-            System.out.println("Un vaisseau de type " + this.type + " attaque un vaisseau de type " + target.type + " en utilisant l'arme " + weapon + " pendant " + duration + " minutes.");
+            System.out.println("Un vaisseau de type " + this.type + " attaque un vaisseau de type " + target.type.name + " en utilisant l'arme " + weapon + " pendant " + duration + " minutes.");
             target.armourResistanceCapability /= 2;
             target.shieldDurationCapability = 0;
         }
@@ -23,7 +23,7 @@ public class WarVessel extends Vessel{
 
     void deactivateWeapons(){
         deactivatedWeapons=true;
-        System.out.println("Désactivation des armes d'un vaisseau de type "+this.type);
+        System.out.println("Désactivation des armes d'un vaisseau de type "+this.type.name);
     }
     void activateShield(){
         super.activateShield();
@@ -37,8 +37,8 @@ public class WarVessel extends Vessel{
         int tonnageToSet=0;
         if(tonnage>0){
             switch (this.type){
-                case "HUNTER":
-                    System.out.println("Un vaisseau de type "+this.type+" n'emporte pas de chargement.");
+                case HUNTER:
+                    System.out.println("Un vaisseau de type "+this.type.name+" n'emporte pas de chargement.");
                     rejectedTonnage=tonnage;
                     break;
                 default:

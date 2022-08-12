@@ -36,11 +36,11 @@ public class HelloUniverse {
         System.out.println(venus.name+" a effectué "+nombreDeRotation+" tours complets sur elle-même.");
 
 
-        WarVessel hunter=new WarVessel("HUNTER");
-        WarVessel frigate=new WarVessel("FRIGATE");
-        WarVessel cruiser=new WarVessel("CRUISER");
-        CivilianVessel cargo=new CivilianVessel("CARGO");
-        CivilianVessel worldVessel=new CivilianVessel("WORLD-VESSEL");
+        WarVessel hunter=new WarVessel(TypeVaisseau.HUNTER);
+        WarVessel frigate=new WarVessel(TypeVaisseau.FRIGATE);
+        WarVessel cruiser=new WarVessel(TypeVaisseau.CRUISER);
+        CivilianVessel cargo=new CivilianVessel(TypeVaisseau.CARGO);
+        CivilianVessel worldVessel=new CivilianVessel(TypeVaisseau.WORLD_VESSEL);
 
         String vesselType;
         String planetName;
@@ -48,31 +48,32 @@ public class HelloUniverse {
         int numberOfPassengers;
 
         Scanner sc=new Scanner(System.in);
-        System.out.println("Quel vaisseau voulez-vous manipuler (HUNTER,FRIGATE,CRUISER,CARGO,WORLD-VESSEL)?");
+        System.out.println("Quel vaisseau voulez-vous manipuler (HUNTER,FRIGATE,CRUISER,CARGO,WORLD_VESSEL)?");
         vesselType=sc.nextLine();
-        System.out.println("Vous voulez manipuler un vaisseau de type "+vesselType+".");
+        TypeVaisseau typeVaisseau=TypeVaisseau.valueOf(vesselType);
+        System.out.println("Vous voulez manipuler un vaisseau de type "+typeVaisseau.name+".");
         System.out.println("Sur quelle planète tellurique voulez-vous que le vaisseau de type "+vesselType+" se pose?");
         planetName=sc.nextLine();
         System.out.println("Quel tonnage voulez-vous que le vaisseau emporte?");
         tonnageCargo=sc.nextInt();
-        System.out.println("Le vaisseau "+vesselType+" va embarquer "+tonnageCargo+ " tonnes.");
+        System.out.println("Le vaisseau "+typeVaisseau.name+" va embarquer "+tonnageCargo+ " tonnes.");
         Vessel choosenVessel=null;
         int refusedQuantity=0;
 
-        switch (vesselType){
-            case("HUNTER"):
+        switch (typeVaisseau){
+            case HUNTER:
                 choosenVessel=hunter;
                 break;
-            case("FRIGATE"):
+            case FRIGATE:
                 choosenVessel=frigate;
                 break;
-            case("CRUISER"):
+            case CRUISER:
                 choosenVessel=cruiser;
                 break;
-            case("CARGO"):
+            case CARGO:
                 choosenVessel=cargo;
                 break;
-            case("WORLD-VESSEL"):
+            case WORLD_VESSEL:
                 choosenVessel=worldVessel;
                 break;
         }
@@ -102,7 +103,7 @@ public class HelloUniverse {
 
 
         Vessel civilVessel=new CivilianVessel();
-        civilVessel.type="WORLD-VESSEL";
+        civilVessel.type=TypeVaisseau.WORLD_VESSEL;
         cruiser.activateShield();
         ((WarVessel) cruiser).attack(civilVessel,"lasers photoniques",3);
 
@@ -121,13 +122,13 @@ public class HelloUniverse {
         System.out.println("currentTonnage : " +frigate.currentTonnage);
         System.out.println("Quantité refusée : "+refusedQuantity);
 
-        WarVessel frigate2=new WarVessel("FRIGATE");
+        WarVessel frigate2=new WarVessel(TypeVaisseau.FRIGATE);
         frigate2.numberOfPassengers=14;
         refusedQuantity=frigate2.carryCargo(30);
         System.out.println("currentTonnage : " +frigate2.currentTonnage);
         System.out.println("Quantité refusée : "+refusedQuantity);
 
-        CivilianVessel cv=new CivilianVessel("WORLD-VESSEL");
+        CivilianVessel cv=new CivilianVessel(TypeVaisseau.WORLD_VESSEL);
         refusedQuantity=cv.carryCargo(1560);
         System.out.println("currentTonnage : " +cv.currentTonnage);
         System.out.println("Quantité refusée : "+refusedQuantity);
@@ -135,12 +136,12 @@ public class HelloUniverse {
 
         Vessel vesselOut=mars.welcomeVessels(hunter);
         if(vesselOut!=null){
-            System.out.println("Un vaisseau de type "+vesselOut.type+" doit s'en aller.");
+            System.out.println("Un vaisseau de type "+vesselOut.type.name+" doit s'en aller.");
         }else{
             System.out.println("Auncun vaisseau ne s'en va.");
         }
         CivilianVessel civilianVessel=new CivilianVessel();
-        civilianVessel.type="WORLD-VESSEL";
+        civilianVessel.type=TypeVaisseau.WORLD_VESSEL;
         hunter.attack(civilianVessel,"lasers photoniques",3);
         vesselOut=mars.welcomeVessels(civilianVessel);
         if(vesselOut!=null){
@@ -170,7 +171,7 @@ public class HelloUniverse {
         System.out.println(Planet.expansion(14.2));
         System.out.println("Nombre de planètes découvertes : "+Planet.numberOfDiscoveredPlanets);
 
-        WarVessel hunterVessel=new WarVessel("HUNTER",156,2);
+        WarVessel hunterVessel=new WarVessel(TypeVaisseau.HUNTER,156,2);
         //CivilianVessel worldVessel=new CivilianVessel("VAISSEAU-MONDE",4784,30);
         hunterVessel.activateShield();
         worldVessel.activateShield();

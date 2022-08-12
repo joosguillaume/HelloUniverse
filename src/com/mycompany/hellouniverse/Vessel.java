@@ -1,7 +1,7 @@
 package com.mycompany.hellouniverse;
 
 public abstract class Vessel {
-    String type;
+    TypeVaisseau type;
     int numberOfPassengers;
 
     int armourResistanceCapability;
@@ -11,20 +11,20 @@ public abstract class Vessel {
 
     Vessel(){
     }
-    Vessel(String type){
-        System.out.println("Un nouveau vaisseau est construit.");
+    Vessel(TypeVaisseau type){
+        System.out.println("Un nouveau vaisseau "+type.name+" est construit.");
         this.type=type;
         switch (type){
-            case("FRIGATE"):
+            case FRIGATE:
                 this.maxTonnage=50;
                 break;
-            case("CRUISER"):
+            case CRUISER:
                 this.maxTonnage=100;
                 break;
-            case("CARGO"):
+            case CARGO:
                 this.maxTonnage=500;
                 break;
-            case("WORLD-VESSEL"):
+            case WORLD_VESSEL:
                 this.maxTonnage=2000;
                 break;
             default:
@@ -33,18 +33,18 @@ public abstract class Vessel {
         }
     }
 
-    Vessel(String type,int armourResistanceCapability,int shieldDurationCapability) {
+    Vessel(TypeVaisseau type,int armourResistanceCapability,int shieldDurationCapability) {
         this();
         this.type = type;
         this.armourResistanceCapability = armourResistanceCapability;
         this.shieldDurationCapability = shieldDurationCapability;
     }
     void activateShield(){
-        System.out.println("Activation du bouclier d'un vaisseau de type "+this.type);
+        System.out.println("Activation du bouclier d'un vaisseau de type "+this.type.name);
     }
 
     void deactivateShield(){
-        System.out.println("Désactivation du bouclier d'un vaisseau de type "+this.type);
+        System.out.println("Désactivation du bouclier d'un vaisseau de type "+this.type.name);
     }
 
     abstract int carryCargo(int tonnage);
