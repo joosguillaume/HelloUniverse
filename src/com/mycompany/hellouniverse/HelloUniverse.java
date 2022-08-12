@@ -42,6 +42,12 @@ public class HelloUniverse {
         CivilianVessel cargo=new CivilianVessel(TypeVaisseau.CARGO);
         CivilianVessel worldVessel=new CivilianVessel(TypeVaisseau.WORLD_VESSEL);
 
+        WarVessel hunter1=new WarVessel(TypeVaisseau.HUNTER);
+        WarVessel hunter2=new WarVessel(TypeVaisseau.HUNTER);
+        CivilianVessel cargo1=new CivilianVessel(TypeVaisseau.CARGO);
+
+        terre.welcomeVessels(hunter1,hunter2,cargo1);
+
         String vesselType;
         String planetName;
         int tonnageCargo;
@@ -98,11 +104,11 @@ public class HelloUniverse {
             switch (planetName) {
                 case ("Terre"):
                     choosenPlanet=terre;
-                    terre.welcomeVessels(choosenVessel);
+                    terre.welcomeVessel(choosenVessel);
                     break;
                 case ("Mars"):
                     choosenPlanet=mars;
-                    mars.welcomeVessels(choosenVessel);
+                    mars.welcomeVessel(choosenVessel);
                     break;
                 default:
                     break;
@@ -126,7 +132,7 @@ public class HelloUniverse {
 
         System.exit(0);
 
-        Vessel vesselOut=mars.welcomeVessels(hunter);
+        Vessel vesselOut=mars.welcomeVessel(hunter);
         if(vesselOut!=null){
             System.out.println("Un vaisseau de type "+vesselOut.type.name+" doit s'en aller.");
         }else{
@@ -135,7 +141,7 @@ public class HelloUniverse {
         CivilianVessel civilianVessel=new CivilianVessel();
         civilianVessel.type=TypeVaisseau.WORLD_VESSEL;
         hunter.attack(civilianVessel,"lasers photoniques",3);
-        vesselOut=mars.welcomeVessels(civilianVessel);
+        vesselOut=mars.welcomeVessel(civilianVessel);
         if(vesselOut!=null){
             System.out.println("Un vaisseau de type "+vesselOut.type+" doit s'en aller.");
         }else{

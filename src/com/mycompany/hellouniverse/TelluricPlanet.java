@@ -36,7 +36,7 @@ public class TelluricPlanet extends Planet implements Habitable{
         return available;
     }
     @Override
-    public Vessel welcomeVessels(Vessel vesselArriving){
+    public Vessel welcomeVessel(Vessel vesselArriving){
         if(vesselArriving instanceof WarVessel){
             ((WarVessel) vesselArriving).deactivateWeapons();
         }
@@ -45,5 +45,14 @@ public class TelluricPlanet extends Planet implements Habitable{
         this.vesselIn=vesselArriving;
         this.totalVisitors+=vesselArriving.numberOfPassengers;
         return vesselOut;
+    }
+    public void welcomeVessels(Vessel... vesselArriving){
+        for(int i=0;i<vesselArriving.length;i++){
+            this.dockingBay[i]=vesselArriving[i];
+            if(vesselArriving[i] instanceof WarVessel){
+                ((WarVessel) vesselArriving[i]).deactivateWeapons();
+            }
+            this.totalVisitors+=vesselArriving[i].numberOfPassengers;
+        }
     }
 }
