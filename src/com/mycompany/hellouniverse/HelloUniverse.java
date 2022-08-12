@@ -10,9 +10,9 @@ public class HelloUniverse {
         mercure.diameter = 4880;
         TelluricPlanet venus = new TelluricPlanet("Venus");
         venus.diameter = 12100;
-        TelluricPlanet terre = new TelluricPlanet("Terre");
+        TelluricPlanet terre = new TelluricPlanet("Terre",4);
         terre.diameter = 12756;
-        TelluricPlanet mars = new TelluricPlanet("Mars");
+        TelluricPlanet mars = new TelluricPlanet("Mars",4);
         mars.diameter = 6792;
         GaseousPlanet jupiter = new GaseousPlanet("Jupiter");
         jupiter.diameter = 142984;
@@ -24,7 +24,7 @@ public class HelloUniverse {
         neptune.diameter = 49532;
 
         System.out.println(mars.name+" est une planète "+mars.material+" avec un diamètre de "+mars.diameter+ " kilomètre.");
-
+        System.out.println("Sa baie accostage a "+mars.dockingBay.length+" places.");
         int nombreDeRevolution=0;
         int nombreDeRotation=0;
         nombreDeRevolution=neptune.revolution(-3542);
@@ -46,61 +46,101 @@ public class HelloUniverse {
         String planetName;
         int tonnageCargo;
         int numberOfPassengers;
-
+        boolean continuerTraitement=false;
+        int refusedQuantity = 0;
         Scanner sc=new Scanner(System.in);
-        System.out.println("Quel vaisseau voulez-vous manipuler (HUNTER,FRIGATE,CRUISER,CARGO,WORLD_VESSEL)?");
-        vesselType=sc.nextLine();
-        TypeVaisseau typeVaisseau=TypeVaisseau.valueOf(vesselType);
-        System.out.println("Vous voulez manipuler un vaisseau de type "+typeVaisseau.name+".");
-        System.out.println("Sur quelle planète tellurique voulez-vous que le vaisseau de type "+vesselType+" se pose?");
-        planetName=sc.nextLine();
-        System.out.println("Quel tonnage voulez-vous que le vaisseau emporte?");
-        tonnageCargo=sc.nextInt();
-        System.out.println("Le vaisseau "+typeVaisseau.name+" va embarquer "+tonnageCargo+ " tonnes.");
-        Vessel choosenVessel=null;
-        int refusedQuantity=0;
+        Vessel choosenVessel = null;
+        TelluricPlanet choosenPlanet = null;
 
-        switch (typeVaisseau){
-            case HUNTER:
-                choosenVessel=hunter;
-                break;
-            case FRIGATE:
-                choosenVessel=frigate;
-                break;
-            case CRUISER:
-                choosenVessel=cruiser;
-                break;
-            case CARGO:
-                choosenVessel=cargo;
-                break;
-            case WORLD_VESSEL:
-                choosenVessel=worldVessel;
-                break;
+        do {
+            System.out.println("Quel vaisseau voulez-vous manipuler (HUNTER,FRIGATE,CRUISER,CARGO,WORLD_VESSEL)?");
+            vesselType = sc.nextLine();
+            System.out.println("Vous voulez manipuler un vaisseau de type " + vesselType + ".");
+            TypeVaisseau typeVaisseau = TypeVaisseau.valueOf(vesselType);
+            System.out.println("Vous voulez manipuler un vaisseau de type " + typeVaisseau.name + ".");
+            System.out.println("Sur quelle planète tellurique voulez-vous que le vaisseau de type " + vesselType + " se pose?");
+            planetName = sc.nextLine();
+            System.out.println("Quel tonnage voulez-vous que le vaisseau emporte?");
+            tonnageCargo = sc.nextInt();
+            System.out.println("Le vaisseau " + typeVaisseau.name + " va embarquer " + tonnageCargo + " tonnes.");
+
+
+            refusedQuantity = 0;
+
+            switch (typeVaisseau) {
+                case HUNTER:
+                    choosenVessel = hunter;
+                    break;
+                case FRIGATE:
+                    choosenVessel = frigate;
+                    break;
+                case CRUISER:
+                    choosenVessel = cruiser;
+                    break;
+                case CARGO:
+                    choosenVessel = cargo;
+                    break;
+                case WORLD_VESSEL:
+                    choosenVessel = worldVessel;
+                    break;
+            }
+            if (choosenVessel instanceof WarVessel) {
+                System.out.println("Vous avez choisi un vaisseau de guerre.");
+                System.out.println("Un vaisseau de guerre doit avoir des passagers pour pouvoir embarquer une cargaison.");
+                System.out.println("Combien de passagers voulez-vous?");
+                numberOfPassengers = sc.nextInt();
+                choosenVessel.numberOfPassengers = numberOfPassengers;
+
+            } else {
+                System.out.println("Vous avez choisi un vaisseau civil.");
+            }
+
+            switch (planetName) {
+                case ("Terre"):
+                    choosenPlanet=terre;
+                    terre.welcomeVessels(choosenVessel);
+                    break;
+                case ("Mars"):
+                    choosenPlanet=mars;
+                    mars.welcomeVessels(choosenVessel);
+                    break;
+                default:
+                    break;
+            }
+            refusedQuantity = choosenVessel.carryCargo(tonnageCargo);
+            System.out.println("Tonnage rejeté lors du chargement  du vaisseau de type " + vesselType + " : " + refusedQuantity + " tonnes.");
+
+            if (choosenPlanet.roomLeft()) {
+                //faire accoster le vaisseau
+                System.out.println("Le vaisseau a accosté sur "+choosenPlanet.name+" à la place " + choosenPlanet.freeIndex());
+                choosenPlanet.dockingBay[choosenPlanet.freeIndex()] = hunter;
+            } else {
+                System.out.println("Le vaisseau ne peut pas se poser sur la planète "+choosenPlanet.name+" par manque de place dans la baie.");
+            }
+            sc.nextLine();
+            System.out.println("Voulez-vous recommencer (oui/non) ?");
+            continuerTraitement = sc.nextLine().equals("oui");
+            System.out.println("continuer? " + continuerTraitement);
         }
-        if(choosenVessel instanceof WarVessel){
-            System.out.println("Vous avez choisi un vaisseau de guerre.");
-            System.out.println("Un vaisseau de guerre doit avoir des passagers pour pouvoir embarquer une cargaison.");
-            System.out.println("Combien de passagers voulez-vous?");
-            numberOfPassengers=sc.nextInt();
-            choosenVessel.numberOfPassengers=numberOfPassengers;
+        while(continuerTraitement);
 
-        }else {
-            System.out.println("Vous avez choisi un vaisseau civil.");
+        System.exit(0);
+
+        Vessel vesselOut=mars.welcomeVessels(hunter);
+        if(vesselOut!=null){
+            System.out.println("Un vaisseau de type "+vesselOut.type.name+" doit s'en aller.");
+        }else{
+            System.out.println("Auncun vaisseau ne s'en va.");
         }
-
-        switch (planetName){
-            case("Terre"):
-                terre.welcomeVessels(choosenVessel);
-                break;
-            case("Mars"):
-                mars.welcomeVessels(choosenVessel);
-                break;
-            default:
-                break;
+        CivilianVessel civilianVessel=new CivilianVessel();
+        civilianVessel.type=TypeVaisseau.WORLD_VESSEL;
+        hunter.attack(civilianVessel,"lasers photoniques",3);
+        vesselOut=mars.welcomeVessels(civilianVessel);
+        if(vesselOut!=null){
+            System.out.println("Un vaisseau de type "+vesselOut.type+" doit s'en aller.");
+        }else{
+            System.out.println("Auncun vaisseau ne s'en va.");
         }
-        refusedQuantity=choosenVessel.carryCargo(tonnageCargo);
-        System.out.println("Tonnage rejeté lors du chargement  du vaisseau de type "+vesselType+" : "+refusedQuantity+" tonnes.");
-
 
         Vessel civilVessel=new CivilianVessel();
         civilVessel.type=TypeVaisseau.WORLD_VESSEL;
@@ -134,21 +174,6 @@ public class HelloUniverse {
         System.out.println("Quantité refusée : "+refusedQuantity);
 
 
-        Vessel vesselOut=mars.welcomeVessels(hunter);
-        if(vesselOut!=null){
-            System.out.println("Un vaisseau de type "+vesselOut.type.name+" doit s'en aller.");
-        }else{
-            System.out.println("Auncun vaisseau ne s'en va.");
-        }
-        CivilianVessel civilianVessel=new CivilianVessel();
-        civilianVessel.type=TypeVaisseau.WORLD_VESSEL;
-        hunter.attack(civilianVessel,"lasers photoniques",3);
-        vesselOut=mars.welcomeVessels(civilianVessel);
-        if(vesselOut!=null){
-            System.out.println("Un vaisseau de type "+vesselOut.type+" doit s'en aller.");
-        }else{
-            System.out.println("Auncun vaisseau ne s'en va.");
-        }
         System.out.println("Le nombre d'humains ayant déjà séjourné sur "+mars.name+" est actuellement de "+mars.totalVisitors +".");
 
         Atmosphere uranusAtmosphere=new Atmosphere();
