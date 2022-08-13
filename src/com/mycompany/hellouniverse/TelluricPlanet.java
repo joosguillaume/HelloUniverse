@@ -8,6 +8,7 @@ public class TelluricPlanet extends Planet implements Habitable{
 
     TelluricPlanet(String name){
         super(name);
+        this.material="Tellurique";
     }
     TelluricPlanet(String name,int lengthBay){
         super(name);
