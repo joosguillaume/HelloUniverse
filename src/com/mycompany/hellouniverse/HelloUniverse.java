@@ -73,6 +73,7 @@ public class HelloUniverse {
 
             refusedQuantity = 0;
 
+
             switch (typeVaisseau) {
                 case HUNTER:
                     choosenVessel = hunter;
@@ -90,6 +91,7 @@ public class HelloUniverse {
                     choosenVessel = worldVessel;
                     break;
             }
+            int indexOfTypeCol=0;
             if (choosenVessel instanceof WarVessel) {
                 System.out.println("Vous avez choisi un vaisseau de guerre.");
                 System.out.println("Un vaisseau de guerre doit avoir des passagers pour pouvoir embarquer une cargaison.");
@@ -98,6 +100,7 @@ public class HelloUniverse {
                 choosenVessel.numberOfPassengers = numberOfPassengers;
 
             } else {
+                indexOfTypeCol=1;
                 System.out.println("Vous avez choisi un vaisseau civil.");
             }
 
@@ -116,10 +119,10 @@ public class HelloUniverse {
             refusedQuantity = choosenVessel.carryCargo(tonnageCargo);
             System.out.println("Tonnage rejeté lors du chargement  du vaisseau de type " + vesselType + " : " + refusedQuantity + " tonnes.");
 
-            if (choosenPlanet.roomLeft()) {
+            if (choosenPlanet.roomLeft(indexOfTypeCol)) {
                 //faire accoster le vaisseau
-                System.out.println("Le vaisseau a accosté sur "+choosenPlanet.name+" à la place " + choosenPlanet.freeIndex());
-                choosenPlanet.dockingBay[choosenPlanet.freeIndex()] = hunter;
+                System.out.println("Le vaisseau a accosté sur "+choosenPlanet.name+" à la place "+indexOfTypeCol+"/"+ choosenPlanet.freeIndex(indexOfTypeCol));
+                choosenPlanet.dockingBay[indexOfTypeCol][choosenPlanet.freeIndex(indexOfTypeCol)] = hunter;
             } else {
                 System.out.println("Le vaisseau ne peut pas se poser sur la planète "+choosenPlanet.name+" par manque de place dans la baie.");
             }
