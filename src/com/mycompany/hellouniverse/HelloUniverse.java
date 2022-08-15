@@ -27,6 +27,16 @@ public class HelloUniverse {
         Planet myPlanet = null;
         solarSystem.addPlanets(mercure,venus,terre,mars,jupiter,saturne,uranus,neptune);
 
+        for (Planet planet :solarSystem.planets) {
+            if(planet instanceof TelluricPlanet){
+                System.out.println("Tellurique");
+                System.out.println("planète à l'index trouvée : "+planet.name+" de type "+((TelluricPlanet) planet).material);
+            }else{
+                System.out.println("Gazeuse");
+                System.out.println("planète à l'index trouvée : "+planet.name+" de type "+((GaseousPlanet) planet).material);
+            }
+        }
+/*
         for (int i=0;i<8;i++){
             myPlanet=solarSystem.planets.get(i);
             if(myPlanet instanceof TelluricPlanet){
@@ -37,7 +47,7 @@ public class HelloUniverse {
                 System.out.println("planète à l'index "+i+" : "+myPlanet.name+" de type "+((GaseousPlanet) myPlanet).material);
             }
         }
-
+*/
         System.out.println(mars.name+" est une planète "+mars.material+" avec un diamètre de "+mars.diameter+ " kilomètre.");
         System.out.println("Sa baie accostage a "+mars.dockingBay.length+" places.");
         int nombreDeRevolution=0;
@@ -64,7 +74,7 @@ public class HelloUniverse {
         terre.welcomeVessels(hunter1,hunter2,cargo1);
 
         String vesselType;
-        //String planetName;
+        String planetName;
         int tonnageCargo;
         int numberOfPassengers;
         boolean continuerTraitement=false;
@@ -72,30 +82,39 @@ public class HelloUniverse {
         Scanner sc=new Scanner(System.in);
         Vessel choosenVessel = null;
         TelluricPlanet choosenPlanet = null;
-        int indexChoosenPlanet = 0;
+        //int indexChoosenPlanet = 0;
         do {
             System.out.println("Quel vaisseau voulez-vous manipuler (HUNTER,FRIGATE,CRUISER,CARGO,WORLD_VESSEL)?");
             vesselType = sc.nextLine();
             System.out.println("Vous voulez manipuler un vaisseau de type " + vesselType + ".");
             TypeVaisseau typeVaisseau = TypeVaisseau.valueOf(vesselType);
             System.out.println("Vous voulez manipuler un vaisseau de type " + typeVaisseau.name + ".");
-            //System.out.println("Sur quelle planète tellurique voulez-vous que le vaisseau de type " + vesselType + " se pose?");
-            //planetName = sc.nextLine();
+            System.out.println("Sur quelle planète tellurique voulez-vous que le vaisseau de type " + vesselType + " se pose?");
+            planetName = sc.nextLine();
 
             do {
                 continuerTraitement=true;
-                System.out.println("Quel est l'index de la planète (0 à 7)?");
-                indexChoosenPlanet = sc.nextInt();
-                sc.nextLine();
+                //System.out.println("Quel est l'index de la planète (0 à 7)?");
+                //indexChoosenPlanet = sc.nextInt();
+                //sc.nextLine();
 
-                myPlanet = solarSystem.planets.get(indexChoosenPlanet);
-                if (myPlanet instanceof GaseousPlanet) {
-                    System.out.println("Veuillez choisir une planète tellurique.");
-                    continuerTraitement = false;
+                System.out.println("Sur quelle planète tellurique voulez-vous que le vaisseau de type " + vesselType + " se pose?");
+                planetName = sc.nextLine();
+                //myPlanet = solarSystem.planets.get(indexChoosenPlanet);
+                for (Planet planet: solarSystem.planets) {
+                    if (planet.name.equals(planetName)) {
+                        System.out.println("Planète trouvée");
+                        if (planet instanceof GaseousPlanet) {
+                            System.out.println("Veuillez choisir une planète tellurique.");
+                            continuerTraitement = false;
+                        }else {
+                            choosenPlanet = ((TelluricPlanet) planet);
+                        }
+                    }
                 }
             }while(!continuerTraitement);
 
-            System.out.println("Vous avez choisi la planète "+((TelluricPlanet) myPlanet).name);
+            System.out.println("Vous avez choisi la planète "+((TelluricPlanet) choosenPlanet).name);
             System.out.println("Quel tonnage voulez-vous que le vaisseau emporte?");
             tonnageCargo = sc.nextInt();
             System.out.println("Le vaisseau " + typeVaisseau.name + " va embarquer " + tonnageCargo + " tonnes.");
@@ -147,7 +166,7 @@ public class HelloUniverse {
                     break;
             }
  */
-            choosenPlanet=((TelluricPlanet) myPlanet);
+            //choosenPlanet=((TelluricPlanet) myPlanet);
             choosenPlanet.welcomeVessel(choosenVessel);
             refusedQuantity = choosenVessel.carryCargo(tonnageCargo);
             System.out.println("Tonnage rejeté lors du chargement  du vaisseau de type " + vesselType + " : " + refusedQuantity + " tonnes.");

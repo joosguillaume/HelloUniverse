@@ -8,4 +8,6 @@ public class Atmosphere {
     Float argonRate;
     Float carbonDioxydeRate;
     Float sodiumRate;
+
+
 }

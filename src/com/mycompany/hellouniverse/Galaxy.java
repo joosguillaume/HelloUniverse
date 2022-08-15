@@ -1,15 +1,16 @@
 package com.mycompany.hellouniverse;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Galaxy {
     String name;
-    List<Planet> planets;
+    Set<Planet> planets;
+
 
     Galaxy(String name){
         this.name=name;
-        this.planets=new ArrayList();
+        this.planets=new HashSet();
     }
 
     public void addPlanets(Planet... planetToAdd){
