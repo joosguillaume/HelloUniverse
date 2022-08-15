@@ -185,7 +185,7 @@ public class HelloUniverse {
         }
         while(continuerTraitement);
 
-        System.exit(0);
+        //System.exit(0);
 
         Vessel vesselOut=mars.welcomeVessel(hunter);
         if(vesselOut!=null){
@@ -243,6 +243,18 @@ public class HelloUniverse {
         uranusAtmosphere.methaneRate=new Float(2.5);
         uranusAtmosphere.azoteRate=new Float(0);
         uranus.atmosphere=uranusAtmosphere;
+
+        Atmosphere marsAtmosphere=new Atmosphere();
+        marsAtmosphere.constituents.put("CO2", 3f);
+        marsAtmosphere.constituents.put("N2",3f);
+        marsAtmosphere.constituents.put("AR",1.5f);
+        marsAtmosphere.constituents.put("NO",0.013f);
+        mars.atmosphere=marsAtmosphere;
+
+        System.out.println("L'atmosphère de Mars est constitué de :");
+        for(String key :mars.atmosphere.constituents.keySet()){
+            System.out.println(mars.atmosphere.constituents.get(key)+" % de "+key);
+        }
 
         System.out.println("L'atmosphère de la planète "+uranus.name+" est composée : ");
         System.out.println("A "+ uranus.atmosphere.hydrogenRate+ " % d'hydrogène");

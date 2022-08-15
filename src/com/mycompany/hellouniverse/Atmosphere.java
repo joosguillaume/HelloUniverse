@@ -1,5 +1,8 @@
 package com.mycompany.hellouniverse;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Atmosphere {
     Float hydrogenRate;
     Float methaneRate;
@@ -8,6 +11,6 @@ public class Atmosphere {
     Float argonRate;
     Float carbonDioxydeRate;
     Float sodiumRate;
-
+    Map<String,Float> constituents = new HashMap();
 
 }
