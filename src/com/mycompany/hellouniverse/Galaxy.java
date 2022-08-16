@@ -2,6 +2,7 @@ package com.mycompany.hellouniverse;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class Galaxy {
     String name;
@@ -10,7 +11,7 @@ public class Galaxy {
 
     Galaxy(String name){
         this.name=name;
-        this.planets=new HashSet();
+        this.planets=new TreeSet();
     }
 
     public void addPlanets(Planet... planetToAdd){

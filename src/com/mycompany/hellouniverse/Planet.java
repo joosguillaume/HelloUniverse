@@ -1,14 +1,16 @@
 package com.mycompany.hellouniverse;
 
-public abstract class Planet {
+public abstract class Planet implements Comparable{
     static String shape="spherique";
     static int numberOfDiscoveredPlanets;
     String name;
     long diameter;
     Atmosphere atmosphere;
+    float starDistance;
 
-    Planet(String name){
+    Planet(String name,float starDistance){
         this.name=name;
+        this.starDistance=starDistance;
         numberOfDiscoveredPlanets++;
     }
     static String expansion(double distance){
@@ -22,6 +24,15 @@ public abstract class Planet {
     int rotation(int angle){
         System.out.println("Je suis la planète "+ name +" et je tourne sur moi-même.");
         return angle/365;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        Planet otherPlanet=(Planet)o;
+        //if (this.starDistance==otherPlanet.starDistance) return 0;
+        //if (this.starDistance>otherPlanet.starDistance) return 1;
+        //return -1;
+        return ((Float)starDistance).compareTo((Float) otherPlanet.starDistance);
     }
 }
 

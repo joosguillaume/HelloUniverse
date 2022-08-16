@@ -6,26 +6,29 @@ import java.util.Scanner;
 public class HelloUniverse {
     public static void main(String... args){
         System.out.println("Nombre de planètes découvertes : "+Planet.numberOfDiscoveredPlanets);
-        TelluricPlanet mercure = new TelluricPlanet("Mercure",2);
+        TelluricPlanet mercure = new TelluricPlanet("Mercure",57.9f,2);
         mercure.diameter = 4880;
-        TelluricPlanet venus = new TelluricPlanet("Venus",2);
+        TelluricPlanet venus = new TelluricPlanet("Venus",108.2f,2);
         venus.diameter = 12100;
-        TelluricPlanet terre = new TelluricPlanet("Terre",4);
+        TelluricPlanet terre = new TelluricPlanet("Terre",149.6f,4);
         terre.diameter = 12756;
-        TelluricPlanet mars = new TelluricPlanet("Mars",4);
+        TelluricPlanet mars = new TelluricPlanet("Mars",227.9f,4);
         mars.diameter = 6792;
-        GaseousPlanet jupiter = new GaseousPlanet("Jupiter");
+        GaseousPlanet jupiter = new GaseousPlanet("Jupiter",778.3f);
         jupiter.diameter = 142984;
-        GaseousPlanet saturne = new GaseousPlanet("Saturne");
+        GaseousPlanet saturne = new GaseousPlanet("Saturne",1427f);
         saturne.diameter = 120536;
-        GaseousPlanet uranus = new GaseousPlanet("Uranus");
+        GaseousPlanet uranus = new GaseousPlanet("Uranus",2877.38f);
         uranus.diameter = 51118;
-        GaseousPlanet neptune = new GaseousPlanet("Neptune");
+        GaseousPlanet neptune = new GaseousPlanet("Neptune",4497.07f);
         neptune.diameter = 49532;
 
         Galaxy solarSystem = new Galaxy("Système Solaire");
         Planet myPlanet = null;
-        solarSystem.addPlanets(mercure,venus,terre,mars,jupiter,saturne,uranus,neptune);
+        solarSystem.addPlanets(jupiter,neptune,venus,uranus,mars,mercure,saturne,terre);
+        for(Planet planet : solarSystem.planets){
+            System.out.println("Planète "+planet.name +" à une distance de "+planet.starDistance +" millions de km du soleil.");
+        }
 
         for (Planet planet :solarSystem.planets) {
             if(planet instanceof TelluricPlanet){

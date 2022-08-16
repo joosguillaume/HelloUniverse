@@ -6,12 +6,12 @@ public class TelluricPlanet extends Planet implements Habitable{
     Vessel vesselIn;
     Vessel[][] dockingBay;
 
-    TelluricPlanet(String name){
-        super(name);
+    TelluricPlanet(String name,float starDistance){
+        super(name,starDistance);
         this.material="Tellurique";
     }
-    TelluricPlanet(String name,int lengthBay){
-        super(name);
+    TelluricPlanet(String name,float starDistance,int lengthBay){
+        super(name,starDistance);
         this.material="Tellurique";
         this.dockingBay=new Vessel[2][lengthBay];
     }
