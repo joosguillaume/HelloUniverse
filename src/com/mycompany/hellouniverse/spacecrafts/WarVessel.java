@@ -1,17 +1,17 @@
-package com.mycompany.hellouniverse;
+package com.mycompany.hellouniverse.spacecrafts;
 
 public class WarVessel extends Vessel{
     boolean deactivatedWeapons;
-    WarVessel(){
+    public WarVessel(){
         super();
     }
-    WarVessel(TypeVaisseau type){
+    public WarVessel(TypeVaisseau type){
         super(type);
     }
-    WarVessel(TypeVaisseau type,int armourResistanceCapability,int shieldDurationCapability){
+    public WarVessel(TypeVaisseau type,int armourResistanceCapability,int shieldDurationCapability){
         super(type,armourResistanceCapability,shieldDurationCapability);
     }
-    void attack (Vessel target,String weapon,int duration){
+    public void attack (Vessel target,String weapon,int duration){
         if (deactivatedWeapons){
             System.out.println("Attaque impossible, l'armement est désactivé");
         } else {
@@ -21,17 +21,17 @@ public class WarVessel extends Vessel{
         }
     }
 
-    void deactivateWeapons(){
+    public void deactivateWeapons(){
         deactivatedWeapons=true;
         System.out.println("Désactivation des armes d'un vaisseau de type "+this.type.name);
     }
-    void activateShield(){
+    public void activateShield(){
         super.activateShield();
         deactivateWeapons();
     }
 
     @Override
-    int carryCargo(int tonnage) {
+    public int carryCargo(int tonnage) {
         int rejectedTonnage=0;
         int maxAcceptedTonnage=this.numberOfPassengers*2;
         int tonnageToSet=0;

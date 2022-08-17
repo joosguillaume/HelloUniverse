@@ -1,4 +1,4 @@
-package com.mycompany.hellouniverse;
+package com.mycompany.hellouniverse.spacecrafts;
 
 public enum TypeVaisseau {
     HUNTER("Hunter"),

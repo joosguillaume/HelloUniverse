@@ -1,18 +1,18 @@
-package com.mycompany.hellouniverse;
+package com.mycompany.hellouniverse.spacecrafts;
 
 public class CivilianVessel extends Vessel{
-    CivilianVessel(){
+    public CivilianVessel(){
         super();
     }
-    CivilianVessel(TypeVaisseau type){
+    public CivilianVessel(TypeVaisseau type){
         super(type);
     }
-    CivilianVessel(TypeVaisseau type,int armourResistanceCapability,int shieldDurationCapability){
+    public CivilianVessel(TypeVaisseau type,int armourResistanceCapability,int shieldDurationCapability){
         super(type,armourResistanceCapability,shieldDurationCapability);
     }
 
     @Override
-    int carryCargo(int tonnage) {
+    public int carryCargo(int tonnage) {
         int rejectedTonnage=0;
 
         if(tonnage<this.maxTonnage-this.currentTonnage){

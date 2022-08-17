@@ -1,15 +1,14 @@
-package com.mycompany.hellouniverse;
+package com.mycompany.hellouniverse.astroobject;
 
-import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
 public class Galaxy {
     String name;
-    Set<Planet> planets;
+    public Set<Planet> planets;
 
 
-    Galaxy(String name){
+    public Galaxy(String name){
         this.name=name;
         this.planets=new TreeSet();
     }

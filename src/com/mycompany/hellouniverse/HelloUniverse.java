@@ -1,11 +1,22 @@
 package com.mycompany.hellouniverse;
 
-import java.sql.SQLOutput;
+import com.mycompany.hellouniverse.astroobject.*;
+import com.mycompany.hellouniverse.spacecrafts.CivilianVessel;
+import com.mycompany.hellouniverse.spacecrafts.TypeVaisseau;
+import com.mycompany.hellouniverse.spacecrafts.Vessel;
+import com.mycompany.hellouniverse.spacecrafts.WarVessel;
+import static com.mycompany.hellouniverse.spacecrafts.TypeVaisseau.CARGO;
+import static com.mycompany.hellouniverse.spacecrafts.TypeVaisseau.FRIGATE;
+import static com.mycompany.hellouniverse.spacecrafts.TypeVaisseau.HUNTER;
+import static com.mycompany.hellouniverse.spacecrafts.TypeVaisseau.CRUISER;
+import static com.mycompany.hellouniverse.spacecrafts.TypeVaisseau.WORLD_VESSEL;
+
+
 import java.util.Scanner;
 
 public class HelloUniverse {
     public static void main(String... args){
-        System.out.println("Nombre de planètes découvertes : "+Planet.numberOfDiscoveredPlanets);
+        System.out.println("Nombre de planètes découvertes : "+ Planet.numberOfDiscoveredPlanets);
         TelluricPlanet mercure = new TelluricPlanet("Mercure",57.9f,2);
         mercure.diameter = 4880;
         TelluricPlanet venus = new TelluricPlanet("Venus",108.2f,2);
@@ -64,15 +75,15 @@ public class HelloUniverse {
         System.out.println(venus.name+" a effectué "+nombreDeRotation+" tours complets sur elle-même.");
 
 
-        WarVessel hunter=new WarVessel(TypeVaisseau.HUNTER);
-        WarVessel frigate=new WarVessel(TypeVaisseau.FRIGATE);
-        WarVessel cruiser=new WarVessel(TypeVaisseau.CRUISER);
-        CivilianVessel cargo=new CivilianVessel(TypeVaisseau.CARGO);
-        CivilianVessel worldVessel=new CivilianVessel(TypeVaisseau.WORLD_VESSEL);
+        WarVessel hunter=new WarVessel(HUNTER);
+        WarVessel frigate=new WarVessel(FRIGATE);
+        WarVessel cruiser=new WarVessel(CRUISER);
+        CivilianVessel cargo=new CivilianVessel(CARGO);
+        CivilianVessel worldVessel=new CivilianVessel(WORLD_VESSEL);
 
-        WarVessel hunter1=new WarVessel(TypeVaisseau.HUNTER);
-        WarVessel hunter2=new WarVessel(TypeVaisseau.HUNTER);
-        CivilianVessel cargo1=new CivilianVessel(TypeVaisseau.CARGO);
+        WarVessel hunter1=new WarVessel(HUNTER);
+        WarVessel hunter2=new WarVessel(HUNTER);
+        CivilianVessel cargo1=new CivilianVessel(CARGO);
 
         terre.welcomeVessels(hunter1,hunter2,cargo1);
 
@@ -197,7 +208,7 @@ public class HelloUniverse {
             System.out.println("Auncun vaisseau ne s'en va.");
         }
         CivilianVessel civilianVessel=new CivilianVessel();
-        civilianVessel.type=TypeVaisseau.WORLD_VESSEL;
+        civilianVessel.type=WORLD_VESSEL;
         hunter.attack(civilianVessel,"lasers photoniques",3);
         vesselOut=mars.welcomeVessel(civilianVessel);
         if(vesselOut!=null){
@@ -207,7 +218,7 @@ public class HelloUniverse {
         }
 
         Vessel civilVessel=new CivilianVessel();
-        civilVessel.type=TypeVaisseau.WORLD_VESSEL;
+        civilVessel.type=WORLD_VESSEL;
         cruiser.activateShield();
         ((WarVessel) cruiser).attack(civilVessel,"lasers photoniques",3);
 
@@ -226,13 +237,13 @@ public class HelloUniverse {
         System.out.println("currentTonnage : " +frigate.currentTonnage);
         System.out.println("Quantité refusée : "+refusedQuantity);
 
-        WarVessel frigate2=new WarVessel(TypeVaisseau.FRIGATE);
+        WarVessel frigate2=new WarVessel(FRIGATE);
         frigate2.numberOfPassengers=14;
         refusedQuantity=frigate2.carryCargo(30);
         System.out.println("currentTonnage : " +frigate2.currentTonnage);
         System.out.println("Quantité refusée : "+refusedQuantity);
 
-        CivilianVessel cv=new CivilianVessel(TypeVaisseau.WORLD_VESSEL);
+        CivilianVessel cv=new CivilianVessel(WORLD_VESSEL);
         refusedQuantity=cv.carryCargo(1560);
         System.out.println("currentTonnage : " +cv.currentTonnage);
         System.out.println("Quantité refusée : "+refusedQuantity);
@@ -272,7 +283,7 @@ public class HelloUniverse {
         System.out.println(Planet.expansion(14.2));
         System.out.println("Nombre de planètes découvertes : "+Planet.numberOfDiscoveredPlanets);
 
-        WarVessel hunterVessel=new WarVessel(TypeVaisseau.HUNTER,156,2);
+        WarVessel hunterVessel=new WarVessel(HUNTER,156,2);
         //CivilianVessel worldVessel=new CivilianVessel("VAISSEAU-MONDE",4784,30);
         hunterVessel.activateShield();
         worldVessel.activateShield();

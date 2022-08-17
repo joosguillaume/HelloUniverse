@@ -1,16 +1,19 @@
-package com.mycompany.hellouniverse;
+package com.mycompany.hellouniverse.astroobject;
+
+import com.mycompany.hellouniverse.spacecrafts.Vessel;
+import com.mycompany.hellouniverse.spacecrafts.WarVessel;
 
 public class TelluricPlanet extends Planet implements Habitable{
-    String material;
-    int totalVisitors;
+    public String material;
+    public int totalVisitors;
     Vessel vesselIn;
-    Vessel[][] dockingBay;
+    public Vessel[][] dockingBay;
 
     TelluricPlanet(String name,float starDistance){
         super(name,starDistance);
         this.material="Tellurique";
     }
-    TelluricPlanet(String name,float starDistance,int lengthBay){
+    public TelluricPlanet(String name, float starDistance, int lengthBay){
         super(name,starDistance);
         this.material="Tellurique";
         this.dockingBay=new Vessel[2][lengthBay];

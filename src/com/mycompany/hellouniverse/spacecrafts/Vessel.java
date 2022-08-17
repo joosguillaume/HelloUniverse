@@ -1,13 +1,13 @@
-package com.mycompany.hellouniverse;
+package com.mycompany.hellouniverse.spacecrafts;
 
 public abstract class Vessel {
-    TypeVaisseau type;
-    int numberOfPassengers;
+    public TypeVaisseau type;
+    public int numberOfPassengers;
 
-    int armourResistanceCapability;
-    int shieldDurationCapability;
+    public int armourResistanceCapability;
+    public int shieldDurationCapability;
     int maxTonnage;
-    int currentTonnage;
+    public int currentTonnage;
 
     Vessel(){
     }
@@ -39,13 +39,13 @@ public abstract class Vessel {
         this.armourResistanceCapability = armourResistanceCapability;
         this.shieldDurationCapability = shieldDurationCapability;
     }
-    void activateShield(){
+    public void activateShield(){
         System.out.println("Activation du bouclier d'un vaisseau de type "+this.type.name);
     }
 
-    void deactivateShield(){
+    public void deactivateShield(){
         System.out.println("Désactivation du bouclier d'un vaisseau de type "+this.type.name);
     }
 
-    abstract int carryCargo(int tonnage);
+    public abstract int carryCargo(int tonnage);
 }
