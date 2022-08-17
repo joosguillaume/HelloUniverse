@@ -231,21 +231,21 @@ public class HelloUniverse {
 
         frigate.numberOfPassengers=100;
         refusedQuantity=frigate.carryCargo(45);
-        System.out.println("currentTonnage : " +frigate.currentTonnage);
+        //System.out.println("currentTonnage : " +frigate.currentTonnage);
         System.out.println("Quantité refusée : "+refusedQuantity);
         refusedQuantity=frigate.carryCargo(12);
-        System.out.println("currentTonnage : " +frigate.currentTonnage);
+        //System.out.println("currentTonnage : " +frigate.currentTonnage);
         System.out.println("Quantité refusée : "+refusedQuantity);
 
         WarVessel frigate2=new WarVessel(FRIGATE);
         frigate2.numberOfPassengers=14;
         refusedQuantity=frigate2.carryCargo(30);
-        System.out.println("currentTonnage : " +frigate2.currentTonnage);
+        //System.out.println("currentTonnage : " +frigate2.currentTonnage);
         System.out.println("Quantité refusée : "+refusedQuantity);
 
         CivilianVessel cv=new CivilianVessel(WORLD_VESSEL);
         refusedQuantity=cv.carryCargo(1560);
-        System.out.println("currentTonnage : " +cv.currentTonnage);
+        //System.out.println("currentTonnage : " +cv.currentTonnage);
         System.out.println("Quantité refusée : "+refusedQuantity);
 
 

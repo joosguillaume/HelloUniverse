@@ -1,7 +1,7 @@
 package com.mycompany.hellouniverse.spacecrafts;
 
 public class WarVessel extends Vessel{
-    boolean deactivatedWeapons;
+    private boolean deactivatedWeapons;
     public WarVessel(){
         super();
     }
@@ -24,6 +24,10 @@ public class WarVessel extends Vessel{
     public void deactivateWeapons(){
         deactivatedWeapons=true;
         System.out.println("Désactivation des armes d'un vaisseau de type "+this.type.name);
+    }
+    public void activateWeapons(){
+        deactivatedWeapons=false;
+        System.out.println("activation des armes d'un vaisseau de type "+this.type.name);
     }
     public void activateShield(){
         super.activateShield();

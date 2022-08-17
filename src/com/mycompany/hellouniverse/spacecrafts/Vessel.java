@@ -7,7 +7,7 @@ public abstract class Vessel {
     public int armourResistanceCapability;
     public int shieldDurationCapability;
     int maxTonnage;
-    public int currentTonnage;
+    protected int currentTonnage;
 
     Vessel(){
     }
