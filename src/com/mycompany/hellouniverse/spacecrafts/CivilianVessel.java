@@ -1,9 +1,7 @@
 package com.mycompany.hellouniverse.spacecrafts;
 
 public class CivilianVessel extends Vessel{
-    public CivilianVessel(){
-        super();
-    }
+
     public CivilianVessel(TypeVaisseau type){
         super(type);
     }

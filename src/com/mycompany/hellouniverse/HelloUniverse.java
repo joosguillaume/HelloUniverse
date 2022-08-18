@@ -207,8 +207,8 @@ public class HelloUniverse {
         }else{
             System.out.println("Auncun vaisseau ne s'en va.");
         }
-        CivilianVessel civilianVessel=new CivilianVessel();
-        civilianVessel.type=WORLD_VESSEL;
+        CivilianVessel civilianVessel=new CivilianVessel(WORLD_VESSEL);
+        //civilianVessel.type=WORLD_VESSEL;
         hunter.attack(civilianVessel,"lasers photoniques",3);
         vesselOut=mars.welcomeVessel(civilianVessel);
         if(vesselOut!=null){
@@ -217,8 +217,8 @@ public class HelloUniverse {
             System.out.println("Auncun vaisseau ne s'en va.");
         }
 
-        Vessel civilVessel=new CivilianVessel();
-        civilVessel.type=WORLD_VESSEL;
+        Vessel civilVessel=new CivilianVessel(WORLD_VESSEL);
+        //civilVessel.type=WORLD_VESSEL;
         cruiser.activateShield();
         ((WarVessel) cruiser).attack(civilVessel,"lasers photoniques",3);
 

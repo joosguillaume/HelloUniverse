@@ -17,11 +17,11 @@ public abstract class Planet implements Comparable{
         //System.out.println(distance<14?"Oh la la mais c'est super rapide":"Je rêve ou c'est plus rapide que la lumière?");
         return distance<14?"Oh la la mais c'est super rapide":"Je rêve ou c'est plus rapide que la lumière?";
     }
-    public int revolution(int angle){
+    public final int revolution(int angle){
         System.out.println("Je suis la planète "+ name +" et je tourne autour de mon étoile.");
         return angle/365;
     }
-    public int rotation(int angle){
+    public final int rotation(int angle){
         System.out.println("Je suis la planète "+ name +" et je tourne sur moi-même.");
         return angle/365;
     }

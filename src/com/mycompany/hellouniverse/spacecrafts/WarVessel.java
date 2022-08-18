@@ -2,9 +2,7 @@ package com.mycompany.hellouniverse.spacecrafts;
 
 public class WarVessel extends Vessel{
     private boolean deactivatedWeapons;
-    public WarVessel(){
-        super();
-    }
+
     public WarVessel(TypeVaisseau type){
         super(type);
     }

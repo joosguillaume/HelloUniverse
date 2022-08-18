@@ -1,7 +1,7 @@
 package com.mycompany.hellouniverse.spacecrafts;
 
 public abstract class Vessel {
-    public TypeVaisseau type;
+    public final TypeVaisseau type;
     public int numberOfPassengers;
 
     public int armourResistanceCapability;
@@ -9,8 +9,7 @@ public abstract class Vessel {
     int maxTonnage;
     protected int currentTonnage;
 
-    Vessel(){
-    }
+
     Vessel(TypeVaisseau type){
         System.out.println("Un nouveau vaisseau "+type.name+" est construit.");
         this.type=type;
@@ -34,8 +33,8 @@ public abstract class Vessel {
     }
 
     Vessel(TypeVaisseau type,int armourResistanceCapability,int shieldDurationCapability) {
-        this();
-        this.type = type;
+        this(type);
+        //this.type = type;
         this.armourResistanceCapability = armourResistanceCapability;
         this.shieldDurationCapability = shieldDurationCapability;
     }
