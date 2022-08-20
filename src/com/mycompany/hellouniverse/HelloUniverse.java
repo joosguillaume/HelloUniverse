@@ -10,6 +10,7 @@ import static com.mycompany.hellouniverse.spacecrafts.TypeVaisseau.CRUISER;
 import static com.mycompany.hellouniverse.spacecrafts.TypeVaisseau.WORLD_VESSEL;
 
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class HelloUniverse {
@@ -87,8 +88,8 @@ public class HelloUniverse {
 
         String vesselType;
         String planetName;
-        int tonnageCargo;
-        int numberOfPassengers;
+        int tonnageCargo=0;
+        int numberOfPassengers=0;
         boolean continuerTraitement=false;
         int refusedQuantity = 0;
         Scanner sc=new Scanner(System.in);
@@ -127,8 +128,19 @@ public class HelloUniverse {
             }while(!continuerTraitement);
 
             System.out.println("Vous avez choisi la planète "+((TelluricPlanet) choosenPlanet).name);
-            System.out.println("Quel tonnage voulez-vous que le vaisseau emporte?");
-            tonnageCargo = sc.nextInt();
+            boolean inputType=false;
+            do {
+                System.out.println("Quel tonnage voulez-vous que le vaisseau emporte?");
+                try{
+                    tonnageCargo = sc.nextInt();
+                    inputType=true;
+                } catch(InputMismatchException me){
+                    System.out.println("Erreur de saisie. Veuillez resaisir");
+                } finally{
+                    sc.nextLine();
+                }
+            }while(!inputType);
+
             System.out.println("Le vaisseau " + typeVaisseau.name + " va embarquer " + tonnageCargo + " tonnes.");
 
 
@@ -156,8 +168,20 @@ public class HelloUniverse {
             if (choosenVessel instanceof WarVessel) {
                 System.out.println("Vous avez choisi un vaisseau de guerre.");
                 System.out.println("Un vaisseau de guerre doit avoir des passagers pour pouvoir embarquer une cargaison.");
-                System.out.println("Combien de passagers voulez-vous?");
-                numberOfPassengers = sc.nextInt();
+
+                inputType=false;
+                do {
+                    System.out.println("Combien de passagers voulez-vous?");
+                    try{
+                        numberOfPassengers = sc.nextInt();
+                        inputType=true;
+                    } catch(InputMismatchException me){
+                        System.out.println("Erreur de saisie. Veuillez resaisir");
+                        sc.nextLine();
+                    }
+                }while(!inputType);
+
+
                 choosenVessel.numberOfPassengers = numberOfPassengers;
 
             } else {
