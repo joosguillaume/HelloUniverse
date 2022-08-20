@@ -1,10 +1,8 @@
 package com.mycompany.hellouniverse;
 
 import com.mycompany.hellouniverse.astroobject.*;
-import com.mycompany.hellouniverse.spacecrafts.CivilianVessel;
-import com.mycompany.hellouniverse.spacecrafts.TypeVaisseau;
-import com.mycompany.hellouniverse.spacecrafts.Vessel;
-import com.mycompany.hellouniverse.spacecrafts.WarVessel;
+import com.mycompany.hellouniverse.spacecrafts.*;
+
 import static com.mycompany.hellouniverse.spacecrafts.TypeVaisseau.CARGO;
 import static com.mycompany.hellouniverse.spacecrafts.TypeVaisseau.FRIGATE;
 import static com.mycompany.hellouniverse.spacecrafts.TypeVaisseau.HUNTER;
@@ -181,8 +179,28 @@ public class HelloUniverse {
             }
  */
             //choosenPlanet=((TelluricPlanet) myPlanet);
+            sc.nextLine();
             choosenPlanet.welcomeVessel(choosenVessel);
-            refusedQuantity = choosenVessel.carryCargo(tonnageCargo);
+            try{
+                refusedQuantity = choosenVessel.carryCargo(tonnageCargo);
+            }catch (ExceedTonnageException e){
+                int ExceedTonnage=e.ExceedTonnage;
+                System.out.println("Attention un problème est survenu");
+                System.out.println("Tonnage en excès : "+ExceedTonnage);
+                System.out.println("Voulez-vous emporter une cargaison partielle "+(tonnageCargo-ExceedTonnage)+" à hauteur de la place disponible dans le vaisseau (oui/non) ?");
+                boolean emporterCargaisonPartielle=sc.nextLine().equals("oui");
+                if(emporterCargaisonPartielle){
+                    System.out.println("emporter la cargaison partielle ");
+                    try {
+                        choosenVessel.carryCargo(tonnageCargo - ExceedTonnage);
+                    }catch (ExceedTonnageException ex) {
+                        System.out.println("Erreur inattendue!");
+                    }
+
+                }else{
+                    System.out.println("cargaison partielle refusée");
+                }
+            }
             System.out.println("Tonnage rejeté lors du chargement  du vaisseau de type " + vesselType + " : " + refusedQuantity + " tonnes.");
 
             if (choosenPlanet.roomLeft(indexOfTypeCol)) {
@@ -192,7 +210,7 @@ public class HelloUniverse {
             } else {
                 System.out.println("Le vaisseau ne peut pas se poser sur la planète "+choosenPlanet.name+" par manque de place dans la baie.");
             }
-            sc.nextLine();
+
             System.out.println("Voulez-vous recommencer (oui/non) ?");
             continuerTraitement = sc.nextLine().equals("oui");
             System.out.println("continuer? " + continuerTraitement);
@@ -244,7 +262,13 @@ public class HelloUniverse {
         System.out.println("Quantité refusée : "+refusedQuantity);
 
         CivilianVessel cv=new CivilianVessel(WORLD_VESSEL);
-        refusedQuantity=cv.carryCargo(1560);
+        try{
+            refusedQuantity=cv.carryCargo(1560);
+        }catch (ExceedTonnageException e){
+            System.out.println("Attention un problème est survenu");
+            System.out.println("Message : "+e.getMessage());
+        }
+
         //System.out.println("currentTonnage : " +cv.currentTonnage);
         System.out.println("Quantité refusée : "+refusedQuantity);
 

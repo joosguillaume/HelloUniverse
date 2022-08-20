@@ -10,14 +10,15 @@ public class CivilianVessel extends Vessel{
     }
 
     @Override
-    public int carryCargo(int tonnage) {
+    public int carryCargo(int tonnage) throws ExceedTonnageException{
         int rejectedTonnage=0;
 
-        if(tonnage<this.maxTonnage-this.currentTonnage){
+        if(tonnage<=this.maxTonnage-this.currentTonnage){
             this.currentTonnage+=tonnage;
         }else{
             rejectedTonnage=(tonnage-this.maxTonnage+this.currentTonnage);
-            this.currentTonnage=this.maxTonnage;
+            throw new ExceedTonnageException(rejectedTonnage);
+            //this.currentTonnage=this.maxTonnage;
         }
         return rejectedTonnage;
     }

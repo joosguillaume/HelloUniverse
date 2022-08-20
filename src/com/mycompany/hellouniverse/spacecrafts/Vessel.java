@@ -46,5 +46,5 @@ public abstract class Vessel {
         System.out.println("Désactivation du bouclier d'un vaisseau de type "+this.type.name);
     }
 
-    public abstract int carryCargo(int tonnage);
+    public abstract int carryCargo(int tonnage) throws ExceedTonnageException;
 }
